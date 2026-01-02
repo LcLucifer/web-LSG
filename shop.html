@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Produk - Love Skin Glow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #3c3c3c 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #000000;
+            color: #FFD700;
+            padding: 1rem 2rem;
+            sticky: top;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #FFD700;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #0288d1;
+        }
+
+        .btn-login {
+            background-color: #FFD700;
+            color: #000;
+            padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .btn-login:hover {
+            background-color: #FFC700;
+        }
+
+        .user-menu {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .user-name {
+            font-size: 0.9rem;
+        }
+
+        .btn-seller {
+            background-color: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .btn-seller:hover {
+            background-color: #5568d3;
+        }
+
+        .btn-logout {
+            background-color: #c62828;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .btn-logout:hover {
+            background-color: #8b0000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .shop-header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .shop-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .filter-btn {
+            background-color: white;
+            color: #333;
+            padding: 10px 20px;
+            border: 2px solid #FFD700;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .filter-btn.active {
+            background-color: #FFD700;
+            color: #000;
+        }
+
+        .filter-btn:hover {
+            background-color: #FFD700;
+            color: #000;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 300px;
+            padding: 10px 15px;
+            border-radius: 25px;
+            border: 2px solid #FFD700;
+            background-color: white;
+            font-size: 1rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #ddd 0%, #f0f0f0 100%);
+        }
+
+        .product-content {
+            padding: 20px;
+        }
+
+        .product-seller {
+            font-size: 0.8rem;
+            color: #999;
+            margin-bottom: 8px;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .product-category {
+            display: inline-block;
+            background-color: #667eea;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid #eee;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .product-stock {
+            font-size: 0.8rem;
+            padding: 4px 8px;
+            border-radius: 3px;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .product-stock.low {
+            background-color: #fff3e0;
+            color: #e65100;
+        }
+
+        .product-stock.out {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .footer {
+            background-color: #000000;
+            color: #FFD700;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 15px;
+            }
+
+            .shop-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .filters {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">✨ LSG - Toko Produk</div>
+            <div class="nav-links">
+                <a href="LSG.html">Beranda</a>
+                <a href="shop.html">Toko</a>
+                <div id="authContainer">
+                    <a href="login.html" class="btn-login">Masuk</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="shop-header">
+            <h1>🛍️ Toko Produk Kecantikan</h1>
+            <p>Temukan produk perawatan kulit terbaik dari seller terpercaya</p>
+        </div>
+
+        <div class="filters">
+            <input type="text" class="search-box" id="searchInput" placeholder="Cari produk...">
+            <button class="filter-btn active" onclick="filterProducts('all')">Semua</button>
+            <button class="filter-btn" onclick="filterProducts('Facial Cleanser')">Facial Cleanser</button>
+            <button class="filter-btn" onclick="filterProducts('Moisturizer')">Moisturizer</button>
+            <button class="filter-btn" onclick="filterProducts('Sunscreen')">Sunscreen</button>
+            <button class="filter-btn" onclick="filterProducts('Serum')">Serum</button>
+            <button class="filter-btn" onclick="filterProducts('Mask')">Mask</button>
+        </div>
+
+        <div id="productsList" class="products-grid"></div>
+        <div id="emptyMessage" class="empty-message" style="display: none;">
+            😢 Tidak ada produk yang sesuai dengan pencarian Anda
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2026 Love Skin Glow - Toko Produk Kecantikan Online</p>
+    </div>
+
+    <script>
+        let allProducts = [];
+        let currentFilter = 'all';
+        let currentUser = null;
+
+        window.addEventListener('load', () => {
+            loadAllProducts();
+            checkAuthStatus();
+            setupSearchListener();
+        });
+
+        function checkAuthStatus() {
+            const loggedInUser = sessionStorage.getItem('loggedInUser');
+            const authContainer = document.getElementById('authContainer');
+
+            if (loggedInUser) {
+                currentUser = JSON.parse(loggedInUser);
+                authContainer.innerHTML = `
+                    <div class="user-menu">
+                        <span class="user-name">👤 ${currentUser.name}</span>
+                        <a href="products.html" class="btn-seller">Kelola Produk</a>
+                        <button class="btn-logout" onclick="handleLogout()">Logout</button>
+                    </div>
+                `;
+            } else {
+                authContainer.innerHTML = '<a href="login.html" class="btn-login">Masuk</a>';
+            }
+        }
+
+        function loadAllProducts() {
+            allProducts = JSON.parse(localStorage.getItem('products')) || [];
+            displayProducts(allProducts);
+        }
+
+        function displayProducts(products) {
+            const productsList = document.getElementById('productsList');
+            const emptyMessage = document.getElementById('emptyMessage');
+
+            if (products.length === 0) {
+                productsList.innerHTML = '';
+                emptyMessage.style.display = 'block';
+                return;
+            }
+
+            emptyMessage.style.display = 'none';
+            productsList.innerHTML = products.map(product => {
+                let stockStatus = 'Stok Tersedia';
+                let stockClass = '';
+
+                if (product.stock === 0) {
+                    stockStatus = 'Habis Terjual';
+                    stockClass = 'out';
+                } else if (product.stock < 5) {
+                    stockStatus = `${product.stock} Sisa`;
+                    stockClass = 'low';
+                } else {
+                    stockStatus = `${product.stock} Stok`;
+                }
+
+                return `
+                    <div class="product-card" ${product.stock === 0 ? 'style="opacity: 0.6;"' : ''}>
+                        <img src="${product.image}" alt="${product.name}" class="product-image">
+                        <div class="product-content">
+                            <div class="product-seller">👤 ${product.createdBy.split('@')[0]}</div>
+                            <div class="product-name">${product.name}</div>
+                            <span class="product-category">${product.category}</span>
+                            <div class="product-description">${product.description}</div>
+                            <div class="product-footer">
+                                <div class="product-price">Rp ${product.price.toLocaleString('id-ID')}</div>
+                                <span class="product-stock ${stockClass}">${stockStatus}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterProducts(category) {
+            currentFilter = category;
+            
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Filter products
+            let filtered = allProducts;
+            if (category !== 'all') {
+                filtered = allProducts.filter(p => p.category === category);
+            }
+
+            // Apply search if exists
+            const searchInput = document.getElementById('searchInput').value;
+            if (searchInput) {
+                filtered = filtered.filter(p => 
+                    p.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+                    p.description.toLowerCase().includes(searchInput.toLowerCase())
+                );
+            }
+
+            displayProducts(filtered);
+        }
+
+        function setupSearchListener() {
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                const searchValue = e.target.value.toLowerCase();
+                
+                let filtered = allProducts;
+                
+                // Apply category filter
+                if (currentFilter !== 'all') {
+                    filtered = filtered.filter(p => p.category === currentFilter);
+                }
+
+                // Apply search filter
+                if (searchValue) {
+                    filtered = filtered.filter(p => 
+                        p.name.toLowerCase().includes(searchValue) ||
+                        p.description.toLowerCase().includes(searchValue)
+                    );
+                }
+
+                displayProducts(filtered);
+            });
+        }
+
+        function handleLogout() {
+            if (confirm('Apakah Anda yakin ingin logout?')) {
+                sessionStorage.removeItem('loggedInUser');
+                window.location.reload();
+            }
+        }
+    </script>
+</body>
+</html>

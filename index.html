@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Map - Love Skin Glow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #3c3c3c 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: #FFD700;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #ccc;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .card h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .card-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn {
+            display: block;
+            padding: 12px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background-color: #FFD700;
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            background-color: #FFC700;
+            transform: translateX(5px);
+        }
+
+        .btn-secondary {
+            background-color: #667eea;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5568d3;
+            transform: translateX(5px);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .badge-public {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .badge-auth {
+            background-color: #fff3e0;
+            color: #e65100;
+        }
+
+        .docs-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .docs-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            border-bottom: 3px solid #FFD700;
+            padding-bottom: 10px;
+        }
+
+        .docs-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .doc-item {
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            border-left: 4px solid #FFD700;
+        }
+
+        .doc-item a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .doc-item a:hover {
+            text-decoration: underline;
+        }
+
+        .doc-item p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .feature {
+            padding: 12px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .feature::before {
+            content: "✅ ";
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            color: #999;
+            padding: 20px;
+            border-top: 1px solid #666;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .docs-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✨ Love Skin Glow</h1>
+            <p>Platform E-Commerce Kecantikan - Sistem Login & Manajemen Produk</p>
+        </header>
+
+        <div class="grid">
+            <!-- MAIN WEBSITE -->
+            <div class="card">
+                <h2>🏠 Website Utama</h2>
+                <span class="badge badge-public">PUBLIC</span>
+                <p>Halaman utama website Love Skin Glow dengan informasi brand dan featured content.</p>
+                <div class="card-links">
+                    <a href="LSG.html" class="btn btn-primary">Buka Website</a>
+                </div>
+            </div>
+
+            <!-- AUTHENTICATION -->
+            <div class="card">
+                <h2>🔐 Autentikasi</h2>
+                <span class="badge badge-public">PUBLIC</span>
+                <p>Sistem login dan registrasi untuk user baru dan existing users.</p>
+                <div class="card-links">
+                    <a href="login.html" class="btn btn-primary">Login</a>
+                </div>
+            </div>
+
+            <!-- SELLER DASHBOARD -->
+            <div class="card">
+                <h2>📦 Seller Dashboard</h2>
+                <span class="badge badge-auth">LOGIN REQUIRED</span>
+                <p>Dashboard lengkap untuk seller mengelola produk, lihat statistik, dan analytics.</p>
+                <div class="features">
+                    <div class="feature">Tambah Produk</div>
+                    <div class="feature">Edit Produk</div>
+                    <div class="feature">Hapus Produk</div>
+                    <div class="feature">Statistik</div>
+                </div>
+                <div class="card-links">
+                    <a href="products.html" class="btn btn-primary">Kelola Produk</a>
+                    <a href="analytics.html" class="btn btn-secondary">Lihat Analytics</a>
+                </div>
+            </div>
+
+            <!-- ONLINE STORE -->
+            <div class="card">
+                <h2>🛍️ Toko Online</h2>
+                <span class="badge badge-public">PUBLIC</span>
+                <p>Toko online untuk customer melihat semua produk dari semua seller dengan fitur search dan filter.</p>
+                <div class="features">
+                    <div class="feature">Lihat Semua Produk</div>
+                    <div class="feature">Search Produk</div>
+                    <div class="feature">Filter Kategori</div>
+                    <div class="feature">Info Seller</div>
+                </div>
+                <div class="card-links">
+                    <a href="shop.html" class="btn btn-primary">Ke Toko</a>
+                </div>
+            </div>
+
+            <!-- ANALYTICS -->
+            <div class="card">
+                <h2>📊 Analytics Dashboard</h2>
+                <span class="badge badge-auth">LOGIN REQUIRED</span>
+                <p>Dashboard analytics mendalam dengan charts dan statistik detail tentang produk Anda.</p>
+                <div class="features">
+                    <div class="feature">Statistik Produk</div>
+                    <div class="feature">Charts Kategori</div>
+                    <div class="feature">Tabel Detail</div>
+                    <div class="feature">Nilai Inventory</div>
+                </div>
+                <div class="card-links">
+                    <a href="analytics.html" class="btn btn-primary">Lihat Analytics</a>
+                </div>
+            </div>
+
+            <!-- CONTACT -->
+            <div class="card">
+                <h2>📞 Contact Person</h2>
+                <span class="badge badge-public">PUBLIC</span>
+                <p>Halaman kontak dengan daftar person yang bisa dihubungi untuk customer inquiries.</p>
+                <div class="card-links">
+                    <a href="btn.html" class="btn btn-primary">Hubungi Kami</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- DOCUMENTATION -->
+        <div class="docs-section">
+            <h2>📚 Dokumentasi</h2>
+            <div class="docs-list">
+                <div class="doc-item">
+                    <a href="QUICK_START.md" target="_blank">⚡ Quick Start Guide</a>
+                    <p>Panduan singkat untuk mulai menggunakan sistem (BACA INI DULU!)</p>
+                </div>
+                <div class="doc-item">
+                    <a href="PANDUAN_LENGKAP.md" target="_blank">📖 Panduan Lengkap</a>
+                    <p>Dokumentasi detail lengkap dengan semua fitur dan cara penggunaan</p>
+                </div>
+                <div class="doc-item">
+                    <a href="README_LOGIN.md" target="_blank">🔐 Dokumentasi Login</a>
+                    <p>Detail lengkap tentang sistem login dan registrasi</p>
+                </div>
+                <div class="doc-item">
+                    <a href="README_PRODUCTS.md" target="_blank">📦 Dokumentasi Produk</a>
+                    <p>Detail lengkap tentang sistem manajemen produk</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEST CREDENTIALS -->
+        <div class="docs-section">
+            <h2>🧪 Test Credentials</h2>
+            <div class="features">
+                <div style="background: white; border: 1px solid #FFD700; padding: 15px; border-radius: 5px; grid-column: 1/-1;">
+                    <strong>User 1:</strong><br>
+                    📧 Email: <code>user@example.com</code><br>
+                    🔑 Password: <code>password123</code>
+                </div>
+                <div style="background: white; border: 1px solid #FFD700; padding: 15px; border-radius: 5px; grid-column: 1/-1;">
+                    <strong>User 2 (Admin):</strong><br>
+                    📧 Email: <code>admin@loveskinglow.com</code><br>
+                    🔑 Password: <code>admin123</code>
+                </div>
+                <div style="background: white; border: 1px solid #667eea; padding: 15px; border-radius: 5px; grid-column: 1/-1;">
+                    <strong>Atau Buat Akun Baru:</strong><br>
+                    Buka <strong>login.html</strong> → Klik "Daftar di sini" → Isi form signup
+                </div>
+            </div>
+        </div>
+
+        <!-- FEATURES OVERVIEW -->
+        <div class="docs-section">
+            <h2>✨ Fitur Sistem</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div>
+                    <h3 style="color: #667eea; margin-bottom: 10px;">🔐 Autentikasi</h3>
+                    <div class="features">
+                        <div class="feature">Login dengan Email</div>
+                        <div class="feature">Registrasi Akun</div>
+                        <div class="feature">Remember Me</div>
+                        <div class="feature">Forgot Password</div>
+                        <div class="feature">Session Management</div>
+                        <div class="feature">Password Strength</div>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="color: #667eea; margin-bottom: 10px;">📦 Manajemen Produk</h3>
+                    <div class="features">
+                        <div class="feature">Tambah Produk</div>
+                        <div class="feature">Edit Produk</div>
+                        <div class="feature">Hapus Produk</div>
+                        <div class="feature">Upload Gambar</div>
+                        <div class="feature">Search Produk</div>
+                        <div class="feature">Filter Kategori</div>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="color: #667eea; margin-bottom: 10px;">📊 Analytics & Stats</h3>
+                    <div class="features">
+                        <div class="feature">Total Produk</div>
+                        <div class="feature">Total Stok</div>
+                        <div class="feature">Nilai Inventory</div>
+                        <div class="feature">Harga Rata-rata</div>
+                        <div class="feature">Charts Kategori</div>
+                        <div class="feature">Tabel Detail</div>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="color: #667eea; margin-bottom: 10px;">🛍️ Toko Online</h3>
+                    <div class="features">
+                        <div class="feature">Lihat Semua Produk</div>
+                        <div class="feature">Search Real-time</div>
+                        <div class="feature">Filter Kategori</div>
+                        <div class="feature">Info Seller</div>
+                        <div class="feature">Status Stok</div>
+                        <div class="feature">Responsive Design</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Love Skin Glow - Sistem Login & Manajemen Produk v1.0</p>
+            <p>Last Updated: 2 Januari 2026</p>
+        </footer>
+    </div>
+</body>
+</html>

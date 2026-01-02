@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Love Skin Glow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #3c3c3c 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            color: #FFD700;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .login-header h1 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .login-header p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input[type="email"],
+        input[type="password"],
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #FFD700;
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+        }
+
+        .remember-forgot label {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .remember-forgot input[type="checkbox"] {
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+        .remember-forgot a {
+            color: #FFD700;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .remember-forgot a:hover {
+            color: #0288d1;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #FFD700;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .login-btn:hover {
+            background-color: #FFC700;
+            transform: translateY(-2px);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .signup-link a {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .signup-link a:hover {
+            color: #0288d1;
+        }
+
+        .error {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        .success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+            color: #999;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 10px;
+            position: relative;
+        }
+
+        .social-login {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .social-btn {
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            background: #f5f5f5;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: background-color 0.3s;
+        }
+
+        .social-btn:hover {
+            background-color: #efefef;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #FFD700;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .back-link a {
+            color: #FFD700;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .back-link a:hover {
+            color: #0288d1;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+
+            .login-header h1 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="back-link">
+            <a href="LSG.html">← Kembali ke Beranda</a>
+        </div>
+        
+        <div class="login-header">
+            <div class="logo">✨ LSG</div>
+            <h1>Masuk ke Akun Anda</h1>
+            <p>Love Skin Glow</p>
+        </div>
+
+        <div id="errorMessage" class="error"></div>
+        <div id="successMessage" class="success"></div>
+
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Kata Sandi</label>
+                <input type="password" id="password" name="password" placeholder="Masukkan kata sandi Anda" required>
+            </div>
+
+            <div class="remember-forgot">
+                <label>
+                    <input type="checkbox" id="remember" name="remember">
+                    Ingat saya
+                </label>
+                <a href="#" onclick="handleForgotPassword(event)">Lupa kata sandi?</a>
+            </div>
+
+            <button type="submit" class="login-btn" id="loginBtn">Masuk</button>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Data pengguna yang terdaftar (dalam praktik nyata, ini akan dari database)
+        const registeredUsers = [
+            {
+                email: 'user@example.com',
+                password: 'password123',
+                name: 'John Doe'
+            },
+            {
+                email: 'admin@loveskinglow.com',
+                password: 'admin123',
+                name: 'Administrator'
+            }
+        ];
+
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('errorMessage');
+            const successDiv = document.getElementById('successMessage');
+            const loginBtn = document.getElementById('loginBtn');
+            const loading = document.getElementById('loading');
+
+            // Reset pesan
+            errorDiv.style.display = 'none';
+            successDiv.style.display = 'none';
+
+            // Validasi input
+            if (!email || !password) {
+                showError('Mohon isi semua field');
+                return;
+            }
+
+            // Tampilkan loading
+            loginBtn.style.display = 'none';
+            loading.style.display = 'block';
+
+            // Simulasi proses login (dalam praktik nyata, ini akan melakukan request ke server)
+            setTimeout(() => {
+                const user = registeredUsers.find(u => u.email === email && u.password === password);
+
+                if (user) {
+                    // Login berhasil
+                    showSuccess(`Selamat datang, ${user.name}!`);
+                    
+                    // Simpan ke localStorage jika "Ingat saya" dicentang
+                    if (document.getElementById('remember').checked) {
+                        localStorage.setItem('rememberedEmail', email);
+                    }
+
+                    // Simpan session
+                    sessionStorage.setItem('loggedInUser', JSON.stringify({
+                        email: user.email,
+                        name: user.name
+                    }));
+
+                    // Redirect ke dashboard setelah 1.5 detik
+                    setTimeout(() => {
+                        window.location.href = 'products.html';
+                    }, 1500);
+                } else {
+                    // Login gagal
+                    showError('Email atau kata sandi salah');
+                    loginBtn.style.display = 'block';
+                    loading.style.display = 'none';
+                }
+            }, 1500);
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+
+        function showSuccess(message) {
+            const successDiv = document.getElementById('successMessage');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+        }
+
+        function handleForgotPassword(event) {
+            event.preventDefault();
+            const email = prompt('Masukkan email Anda untuk reset kata sandi:');
+            if (email) {
+                if (registeredUsers.some(u => u.email === email)) {
+                    alert('Email reset telah dikirim ke ' + email);
+                } else {
+                    alert('Email tidak ditemukan');
+                }
+            }
+        }
+
+        function handleGoogleLogin() {
+            alert('Login dengan Google akan diimplementasikan');
+            // Implementasi Google OAuth akan ditambahkan di sini
+        }
+
+        // Load email yang diingat saat halaman dimuat
+        window.addEventListener('load', () => {
+            const rememberedEmail = localStorage.getItem('rememberedEmail');
+            if (rememberedEmail) {
+                document.getElementById('email').value = rememberedEmail;
+                document.getElementById('remember').checked = true;
+            }
+
+            // Cek apakah user sudah login
+            const loggedInUser = sessionStorage.getItem('loggedInUser');
+            if (loggedInUser) {
+                // Jika sudah login, redirect ke dashboard
+                window.location.href = 'LSG.html';
+            }
+        });
+
+        // Test Credentials Available:
+        // Email: user@example.com, Password: password123
+        // Email: admin@loveskinglow.com, Password: admin123
+    </script>
+</body>
+</html>
