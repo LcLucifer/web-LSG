@@ -244,24 +244,6 @@
             font-weight: bold;
         }
 
-        .product-stock {
-            font-size: 0.8rem;
-            padding: 4px 8px;
-            border-radius: 3px;
-            background-color: #e8f5e9;
-            color: #2e7d32;
-        }
-
-        .product-stock.low {
-            background-color: #fff3e0;
-            color: #e65100;
-        }
-
-        .product-stock.out {
-            background-color: #ffebee;
-            color: #c62828;
-        }
-
         .empty-message {
             text-align: center;
             padding: 60px 20px;
@@ -389,30 +371,16 @@
 
             emptyMessage.style.display = 'none';
             productsList.innerHTML = products.map(product => {
-                let stockStatus = 'Stok Tersedia';
-                let stockClass = '';
-
-                if (product.stock === 0) {
-                    stockStatus = 'Habis Terjual';
-                    stockClass = 'out';
-                } else if (product.stock < 5) {
-                    stockStatus = `${product.stock} Sisa`;
-                    stockClass = 'low';
-                } else {
-                    stockStatus = `${product.stock} Stok`;
-                }
-
                 return `
-                    <div class="product-card" ${product.stock === 0 ? 'style="opacity: 0.6;"' : ''}>
+                    <div class="product-card">
                         <img src="${product.image}" alt="${product.name}" class="product-image">
                         <div class="product-content">
-                            <div class="product-seller">👤 ${product.createdBy.split('@')[0]}</div>
+                            <div class="product-seller">👤 ${product.createdBy ? product.createdBy.split('@')[0] : 'Seller'}</div>
                             <div class="product-name">${product.name}</div>
                             <span class="product-category">${product.category}</span>
                             <div class="product-description">${product.description}</div>
                             <div class="product-footer">
                                 <div class="product-price">Rp ${product.price.toLocaleString('id-ID')}</div>
-                                <span class="product-stock ${stockClass}">${stockStatus}</span>
                             </div>
                         </div>
                     </div>
@@ -427,7 +395,10 @@
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.target.classList.add('active');
+            // use event.currentTarget if available to avoid relying on global event
+            if (typeof event !== 'undefined' && event.target) {
+                event.target.classList.add('active');
+            }
 
             // Filter products
             let filtered = allProducts;
